@@ -169,6 +169,10 @@ class ThreatAnalyzer {
         // Check if breaches were found (handle both response formats)
         const hasBreaches = analysis.found_breaches || (analysis.breaches && analysis.breaches.length > 0);
         
+        // Store threat data for Attack Surface Map integration
+        const email = document.getElementById('threat-email-input').value.trim();
+        this.storeThreatDataForAttackSurface(email, analysis, hasBreaches);
+        
         if (!hasBreaches) {
             // No breaches found - show safe message
             const safeCard = document.createElement('div');
@@ -520,6 +524,91 @@ class ThreatAnalyzer {
 
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // Store threat data for Attack Surface Map integration
+    storeThreatDataForAttackSurface(email, analysis, hasBreaches) {
+        const attackSurfaceData = {
+            email: email,
+            hasBreaches: hasBreaches,
+            timestamp: Date.now(),
+            breaches: [],
+            riskScore: analysis.risk_score || 0,
+            threatLevel: analysis.ai_analysis?.threat_level || 'LOW'
+        };
+        
+        // Convert breaches to platform nodes for Attack Surface Map
+        if (hasBreaches && analysis.breaches) {
+            attackSurfaceData.breaches = analysis.breaches.map(breach => {
+                const websiteInfo = this.getWebsiteInfo(breach);
+                const platform = this.mapWebsiteToPlatform(websiteInfo.name);
+                
+                return {
+                    name: platform.name,
+                    icon: platform.icon,
+                    color: platform.color,
+                    textColor: platform.textColor,
+                    breachDate: this.getBreachDate(breach),
+                    compromisedData: this.getCompromisedDataTypes(breach),
+                    website: websiteInfo.name.toLowerCase()
+                };
+            });
+        }
+        
+        // Store in localStorage for cross-page communication
+        localStorage.setItem('threatAnalysisData', JSON.stringify(attackSurfaceData));
+        localStorage.setItem('lastThreatAnalysisEmail', email);
+        
+        console.log('Stored threat data for Attack Surface Map:', attackSurfaceData);
+        
+        // Dispatch custom event to notify other components
+        window.dispatchEvent(new CustomEvent('threatAnalysisComplete', {
+            detail: attackSurfaceData
+        }));
+    }
+    
+    // Map website names to platform data with appropriate colors and icons
+    mapWebsiteToPlatform(websiteName) {
+        const platformMapping = {
+            'linkedin': { name: 'LinkedIn', icon: 'fab fa-linkedin', color: '#0077b5', textColor: '#ffffff' },
+            'github': { name: 'GitHub', icon: 'fab fa-github', color: '#333333', textColor: '#ffffff' },
+            'facebook': { name: 'Facebook', icon: 'fab fa-facebook', color: '#1877f2', textColor: '#ffffff' },
+            'twitter': { name: 'Twitter', icon: 'fab fa-twitter', color: '#1da1f2', textColor: '#ffffff' },
+            'instagram': { name: 'Instagram', icon: 'fab fa-instagram', color: '#e4405f', textColor: '#ffffff' },
+            'gmail': { name: 'Gmail', icon: 'far fa-envelope', color: '#ea4335', textColor: '#ffffff' },
+            'yahoo': { name: 'Yahoo', icon: 'fab fa-yahoo', color: '#6001d2', textColor: '#ffffff' },
+            'microsoft': { name: 'Microsoft', icon: 'fab fa-microsoft', color: '#00a1f1', textColor: '#ffffff' },
+            'adobe': { name: 'Adobe', icon: 'fab fa-adobe', color: '#ff0000', textColor: '#ffffff' },
+            'spotify': { name: 'Spotify', icon: 'fab fa-spotify', color: '#1db954', textColor: '#ffffff' },
+            'netflix': { name: 'Netflix', icon: 'fas fa-tv', color: '#e50914', textColor: '#ffffff' },
+            'steam': { name: 'Steam', icon: 'fab fa-steam', color: '#1b2838', textColor: '#ffffff' },
+            'discord': { name: 'Discord', icon: 'fab fa-discord', color: '#5865f2', textColor: '#ffffff' },
+            'twitch': { name: 'Twitch', icon: 'fab fa-twitch', color: '#9146ff', textColor: '#ffffff' },
+            'reddit': { name: 'Reddit', icon: 'fab fa-reddit', color: '#ff4500', textColor: '#ffffff' },
+            'dropbox': { name: 'Dropbox', icon: 'fab fa-dropbox', color: '#0061ff', textColor: '#ffffff' }
+        };
+        
+        const normalizedName = websiteName.toLowerCase();
+        
+        // Check for exact matches first
+        if (platformMapping[normalizedName]) {
+            return platformMapping[normalizedName];
+        }
+        
+        // Check for partial matches
+        for (const [key, platform] of Object.entries(platformMapping)) {
+            if (normalizedName.includes(key) || key.includes(normalizedName)) {
+                return platform;
+            }
+        }
+        
+        // Default fallback for unknown platforms
+        return {
+            name: websiteName,
+            icon: 'fas fa-globe',
+            color: '#6c757d',
+            textColor: '#ffffff'
+        };
     }
 }
 
