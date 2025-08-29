@@ -1,0 +1,1275 @@
+/* Advanced Threat Analysis Platform Styles */
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Top Bar */
+.top-bar {
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid #e1e5e9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.top-logo {
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #667eea;
+    margin: 0;
+}
+
+.top-logo i {
+    font-size: 1.8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.top-logo .logo-text {
+    font-weight: 300;
+}
+
+.account-icon {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-icon:hover {
+    background: #f8f9ff;
+    transform: scale(1.1);
+    color: #764ba2;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    z-index: 999;
+    overflow-y: auto;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.logo-text {
+    font-weight: 300;
+}
+
+/* Main App Container */
+.app-container {
+    margin-left: 280px;
+    margin-top: 60px;
+    padding: 2rem;
+    min-height: calc(100vh - 60px);
+}
+
+/* Feature Navigation */
+.feature-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.feature-btn {
+    padding: 1rem 1.5rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+    color: white;
+}
+
+.feature-btn.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-btn i {
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+/* Feature Panels */
+.feature-panel {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    min-height: 600px;
+}
+
+.feature-panel.active {
+    display: block;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Breach Cards */
+.breach-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-left: 4px solid #dc3545;
+    transition: all 0.3s ease;
+}
+
+.breach-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.breach-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.breach-number {
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.breach-title h4 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.breach-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.breach-details .description {
+    color: #495057;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.breach-data h5 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.data-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.data-tag {
+    background: #f8f9fa;
+    color: #495057;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid #dee2e6;
+}
+
+/* Threat Card Styles */
+.threat-card.summary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-left: none;
+    margin-bottom: 2rem;
+}
+
+.threat-card.safe {
+    border-left-color: #28a745;
+}
+
+.threat-level-badge.safe {
+    background: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.threat-level-badge.critical {
+    background: #dc3545;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.breach-count {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+}
+
+.ai-summary {
+    margin-top: 1.5rem;
+}
+
+.ai-summary h4 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.ai-content {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.ai-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.ai-content strong {
+    color: #ffd700;
+    font-weight: 600;
+}
+
+/* Modern AI Summary Card */
+.ai-summary-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid #e1e5e9;
+    animation: slideIn 0.6s ease-out;
+}
+
+.ai-summary-card.breached {
+    border-left: 5px solid #dc3545;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+}
+
+.ai-summary-card.safe {
+    border-left: 5px solid #28a745;
+    background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+}
+
+.summary-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.critical {
+    background: #dc3545;
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.status-badge.safe {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.summary-header h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 600;
+}
+
+.ai-analysis {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: #f8f9ff;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid #e1e7ff;
+}
+
+.ai-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.ai-content {
+    flex: 1;
+}
+
+.ai-content h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.ai-response {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #495057;
+}
+
+.ai-response p {
+    margin-bottom: 1rem;
+}
+
+.ai-response strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Breaches Section */
+.breaches-section {
+    margin-top: 2rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    padding-left: 0.5rem;
+    border-left: 4px solid #667eea;
+}
+
+.breach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Modern Breach Cards */
+.modern-breach-card {
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    animation: fadeInUp 0.6s ease-out;
+    min-height: 200px;
+}
+
+.modern-breach-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.modern-breach-card.risk-high {
+    border-color: #dc3545;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+}
+
+.modern-breach-card.risk-medium {
+    border-color: #fd7e14;
+    background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+}
+
+.modern-breach-card.risk-low {
+    border-color: #ffc107;
+    background: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+}
+
+.breach-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.website-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.website-logo img {
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.fallback-logo {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #495057;
+}
+
+.website-name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.breach-index {
+    background: #6c757d;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.compromised-data {
+    margin-bottom: 1rem;
+}
+
+.compromised-data h5 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-tags-modern {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.data-tag-modern {
+    background: white;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.breach-date-info {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.breach-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.resolve-action {
+    color: #007bff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.resolve-action:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.panel-header h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.panel-header i {
+    margin-right: 0.5rem;
+    color: #667eea;
+}
+
+.panel-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Feature 1: AI Threat Engine */
+.threat-input-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.threat-form {
+    margin-bottom: 3rem;
+}
+
+.input-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 1.2rem 1.5rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.analyze-btn {
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Threat Results */
+.threat-results {
+    min-height: 200px;
+}
+
+.threat-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    animation: slideIn 0.8s ease-out;
+}
+
+.threat-card.critical {
+    border-left-color: #dc3545;
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+}
+
+.threat-card.high {
+    border-left-color: #fd7e14;
+    background: linear-gradient(135deg, #fff8f0 0%, #feebc8 100%);
+}
+
+.threat-level-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.threat-level-badge.critical {
+    background: #dc3545;
+    color: white;
+}
+
+.threat-level-badge.high {
+    background: #fd7e14;
+    color: white;
+}
+
+.threat-level-badge.medium {
+    background: #ffc107;
+    color: #212529;
+}
+
+.threat-level-badge.low {
+    background: #28a745;
+    color: white;
+}
+
+.ai-narrative {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    background: rgba(255,255,255,0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+}
+
+.risk-score {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.score-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    background: conic-gradient(from 0deg, #28a745 0%, #ffc107 30%, #fd7e14 70%, #dc3545 100%);
+}
+
+.score-inner {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+}
+
+/* Feature 2: Attack Surface Map */
+.surface-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.load-sample-btn {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.load-sample-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.legend {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.node-sample {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.node-sample.clean {
+    background: #28a745;
+    border-color: #1e7e34;
+}
+
+.node-sample.breached {
+    background: #dc3545;
+    border-color: #c82333;
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(220, 53, 69, 0.8); }
+}
+
+.attack-path-sample {
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, #dc3545, #fd7e14);
+    border-radius: 2px;
+    position: relative;
+}
+
+.attack-path-sample::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: -2px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid #fd7e14;
+    border-top: 3.5px solid transparent;
+    border-bottom: 3.5px solid transparent;
+}
+
+.attack-map-container {
+    height: 500px;
+    border: 2px solid #e1e5e9;
+    border-radius: 15px;
+    position: relative;
+    background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%), 
+                linear-gradient(-45deg, #f8f9fa 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f8f9fa 75%), 
+                linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    overflow: hidden;
+}
+
+.map-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #666;
+}
+
+.map-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+/* Feature 3: Simulation */
+.simulation-controls {
+    display: flex;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.scenario-selector {
+    flex: 1;
+    min-width: 250px;
+}
+
+.scenario-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.scenario-selector select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+}
+
+.simulate-btn {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.simulate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+}
+
+.simulation-container {
+    height: 400px;
+    border: 2px dashed #dee2e6;
+    border-radius: 15px;
+    position: relative;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+.simulation-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #666;
+}
+
+.simulation-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+/* Simulation Timeline */
+.simulation-timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+}
+
+.timeline-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    opacity: 0.3;
+    transition: all 0.5s ease;
+}
+
+.timeline-step.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.timeline-step.completed {
+    opacity: 1;
+}
+
+.step-marker {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #dee2e6;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-step.active .step-marker {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.timeline-step.completed .step-marker {
+    background: #28a745;
+    color: white;
+}
+
+.step-content h4 {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.step-content p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Simple Loading State */
+.simple-loading {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #667eea;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.simple-loading i {
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Attack Surface Nodes */
+.attack-node {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.attack-node:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.attack-node.secure {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.attack-node.breached {
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+    animation: pulse-danger 2s infinite;
+}
+
+@keyframes pulse-danger {
+    0%, 100% { box-shadow: 0 0 20px rgba(220, 53, 69, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(220, 53, 69, 0.8); }
+}
+
+.attack-path {
+    position: absolute;
+    height: 3px;
+    background: linear-gradient(90deg, #dc3545, #fd7e14, #dc3545);
+    background-size: 200% 100%;
+    animation: flow 3s linear infinite;
+    z-index: 1;
+}
+
+@keyframes flow {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Simulation Scenarios */
+.simulation-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.simulation-scene.active {
+    opacity: 1;
+}
+
+.scene-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.scene-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.typing-effect {
+    border-right: 2px solid white;
+    animation: typing 3s steps(40) 1s forwards, blink 0.8s infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    0%, 50% { border-color: white; }
+    51%, 100% { border-color: transparent; }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .sidebar {
+        width: 250px;
+    }
+    
+    .app-container {
+        margin-left: 250px;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 1.8rem;
+    }
+    
+    .input-container {
+        flex-direction: column;
+    }
+    
+    .surface-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .legend {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .simulation-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .app-container {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    
+    .mobile-menu-btn {
+        display: flex !important;
+        background: none;
+        border: none;
+        color: #667eea;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mobile-menu-btn:hover {
+        background: #f8f9ff;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar-content {
+        padding: 0 1rem;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .logo i {
+        font-size: 1.5rem;
+    }
+    
+    .panel-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .feature-panel {
+        padding: 1.5rem;
+    }
+    
+    .attack-map-container {
+        height: 300px;
+    }
+    
+    .account-icon {
+        font-size: 1.8rem;
+    }
+}
+
+/* Utility Classes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,46 @@
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.idea/
+.vscode/
+nbproject/
+
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# Environment & config
+.env
+.env.*
+*.local
+
+# Cache & session files
+/cache/
+/storage/
+*.cache
+
+# Logs
+*.log
+/logs/
+/error_log
+
+# PHPUnit
+.phpunit.result.cache
+.phpunit.cache
+coverage/
+
+# Symfony / Laravel (optional, if you use them)
+/bootstrap/cache/
+/node_modules/
+/public/storage/
+/storage/*.key
+
+# Other common PHP frameworks
+/app/cache/
+/app/logs/
+/app/config/parameters.yml
