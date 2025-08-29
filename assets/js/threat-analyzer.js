@@ -46,12 +46,8 @@ class ThreatAnalyzer {
     async makeAnalysisCall(email) {
         // Try different possible API endpoints based on deployment
         const possibleEndpoints = [
-            '/Securely/backend/breach_checker.php',     // XAMPP deployment
-            '/Securely/backend/check_real_breaches.php', // XAMPP deployment (alternative)
-            '/backend/breach_checker.php',              // Direct PHP server
-            '/backend/check_real_breaches.php',         // Direct PHP server (alternative)
-            '../backend/breach_checker.php',            // Relative path
-            '../backend/check_real_breaches.php'        // Relative path (alternative)
+            '/Securely/backend/breach_checker.php',    
+            '../backend/breach_checker.php' 
         ];
         
         for (const endpoint of possibleEndpoints) {
