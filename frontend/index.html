@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreatScope AI - Advanced Threat Analysis Platform</title>
+    <meta name="description" content="AI-powered threat analysis with attack surface mapping and personalized security insights">
+    <link rel="stylesheet" href="../assets/css/threat-analysis.css?v=20250829210000">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="landing-container">
+        <div class="landing-content">
+            <div class="logo-section">
+                <i class="fas fa-brain landing-logo"></i>
+                <h1>ThreatScope AI</h1>
+                <p>Advanced Threat Analysis Platform</p>
+            </div>
+            
+            <div class="feature-grid">
+                <a href="threat-engine.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Threat Engine</h3>
+                    <p>Personalized threat assessment with AI-generated insights</p>
+                </a>
+                
+                <a href="attack-surface.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Attack Surface Map</h3>
+                    <p>Visualize digital vulnerabilities and attack paths</p>
+                </a>
+                
+                <a href="simulation.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Threat Simulation</h3>
+                    <p>Experience realistic attack scenarios</p>
+                </a>
+            </div>
+            
+            <div class="quick-access">
+                <h4>Quick Start</h4>
+                <a href="threat-engine.html" class="quick-start-btn">
+                    <i class="fas fa-bolt"></i>
+                    Start Threat Analysis
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .landing-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .landing-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .logo-section {
+            margin-bottom: 3rem;
+        }
+        
+        .landing-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #64b5f6;
+        }
+        
+        .landing-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .landing-content > p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #64b5f6;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        .quick-access {
+            margin-top: 3rem;
+        }
+        
+        .quick-access h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quick-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #4caf50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-start-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-content h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</body>
+</html>

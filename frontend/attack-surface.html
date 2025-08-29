@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attack Surface Map - ThreatScope AI</title>
+    <meta name="description" content="Visualize digital attack surfaces and security vulnerabilities">
+    <link rel="stylesheet" href="../assets/css/threat-analysis.css?v=20250829210000">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- D3.js for attack surface visualization -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()" style="display: none;">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="top-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="logo-text">ThreatScope AI</span>
+                </h1>
+            </div>
+            <div class="top-bar-right">
+                <button class="account-icon">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Feature Navigation -->
+        <nav class="feature-nav">
+            <a href="threat-engine.html" class="feature-btn">
+                <i class="fas fa-robot"></i>
+                <span>AI Threat Engine</span>
+            </a>
+            <a href="attack-surface.html" class="feature-btn active">
+                <i class="fas fa-project-diagram"></i>
+                <span>Attack Surface Map</span>
+            </a>
+            <a href="simulation.html" class="feature-btn">
+                <i class="fas fa-play-circle"></i>
+                <span>What If? Simulation</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Application -->
+    <main class="app-container">
+        <!-- Digital Twin Attack Surface Map -->
+        <section id="attack-surface" class="feature-panel active">
+            <div class="panel-header">
+                <h2><i class="fas fa-project-diagram"></i> Digital Twin: Attack Surface Map</h2>
+                <p>Visualize how your compromised accounts connect and create attack paths</p>
+            </div>
+            
+            <div class="surface-controls">
+                <button onclick="loadSampleProfile()" class="load-sample-btn">
+                    <i class="fas fa-user-shield"></i>
+                    Load Sample Profile
+                </button>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="node-sample clean"></div>
+                        <span>Secure</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="node-sample breached"></div>
+                        <span>Breached</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="attack-path-sample"></div>
+                        <span>Attack Path</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="attack-surface-map" class="attack-map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-project-diagram"></i>
+                    <p>Load a profile to see attack surface mapping</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/attack-surface-map.js"></script>
+    <script>
+        // Initialize attack surface map for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the attack surface map
+            if (typeof AttackSurfaceMap !== 'undefined') {
+                window.attackSurfaceMap = new AttackSurfaceMap();
+                console.log('Attack Surface Map initialized');
+            } else {
+                console.error('AttackSurfaceMap class not found');
+            }
+        });
+        
+        // Load sample profile function
+        function loadSampleProfile() {
+            if (window.attackSurfaceMap) {
+                // Use the global function from attack-surface-map.js
+                if (typeof window.loadSampleProfile === 'undefined') {
+                    // Define the function if it doesn't exist globally
+                    window.loadSampleProfile = function() {
+                        const sampleBreaches = [
+                            {
+                                website: 'linkedin.com',
+                                breach_date: '2023-01-15',
+                                attack_vector: 'credential_stuffing',
+                                severity_level: 5
+                            },
+                            {
+                                website: 'github.com',
+                                breach_date: '2023-02-10',
+                                attack_vector: 'lateral_movement',
+                                severity_level: 5
+                            }
+                        ];
+                        
+                        window.attackSurfaceMap.updateWithBreaches(sampleBreaches);
+                        
+                        // Show notification
+                        const notification = document.createElement('div');
+                        notification.style.cssText = `
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                            color: white;
+                            padding: 1rem 1.5rem;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                            z-index: 1000;
+                            font-weight: 500;
+                        `;
+                        notification.innerHTML = '<i class="fas fa-check"></i> Sample profile loaded - John Doe (TechCorp)';
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    };
+                }
+                window.loadSampleProfile();
+            } else {
+                console.log('Attack surface map not initialized yet, showing loading...');
+                document.querySelector('.map-placeholder').innerHTML = `
+                    <div class="loading-animation">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading attack surface visualization...</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

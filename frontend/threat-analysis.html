@@ -3,184 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreatScope AI - Advanced Threat Analysis Platform</title>
-    <meta name="description" content="AI-powered threat analysis with attack surface mapping and personalized security insights">
-    <link rel="stylesheet" href="../assets/css/threat-analysis.css?v=20250829200243">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- D3.js for attack surface visualization -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Redirecting to ThreatScope AI...</title>
+    <meta http-equiv="refresh" content="0; url=index.html">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        .redirect-message {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <header class="top-bar">
-        <div class="top-bar-content">
-            <div class="top-bar-left">
-                <button class="mobile-menu-btn" onclick="toggleSidebar()" style="display: none;">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="top-logo">
-                    <i class="fas fa-brain"></i>
-                    <span class="logo-text">ThreatScope AI</span>
-                </h1>
-            </div>
-            <div class="top-bar-right">
-                <button class="account-icon">
-                    <i class="fas fa-user-circle"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        
-        <!-- Feature Navigation -->
-        <nav class="feature-nav">
-            <button class="feature-btn active" onclick="showFeature('threat-engine')">
-                <i class="fas fa-robot"></i>
-                <span>AI Threat Engine</span>
-            </button>
-            <button class="feature-btn" onclick="showFeature('attack-surface')">
-                <i class="fas fa-project-diagram"></i>
-                <span>Attack Surface Map</span>
-            </button>
-            <button class="feature-btn" onclick="showFeature('simulation')">
-                <i class="fas fa-play-circle"></i>
-                <span>What If? Simulation</span>
-            </button>
-        </nav>
-    </aside>
-
-    <!-- Main Application -->
-    <main class="app-container">
-
-        <!-- Feature 1: AI-Powered Threat Analysis Engine -->
-        <section id="threat-engine" class="feature-panel active">
-            <div class="panel-header">
-                <h2><i class="fas fa-robot"></i> AI-Powered Threat Analysis</h2>
-                <p>Enter your email for personalized threat assessment with AI-generated insights</p>
-            </div>
-            
-            <div class="threat-input-section">
-                <form id="threat-analysis-form" class="threat-form">
-                    <div class="input-container">
-                        <input type="email" id="threat-email-input" placeholder="Enter your email address" required>
-                        <button type="submit" class="analyze-btn">
-                            <i class="fas fa-brain"></i>
-                            Analyze Threats
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="threat-results" class="threat-results"></div>
-            </div>
-        </section>
-
-        <!-- Feature 2: Digital Twin Attack Surface Map -->
-        <section id="attack-surface" class="feature-panel">
-            <div class="panel-header">
-                <h2><i class="fas fa-project-diagram"></i> Digital Twin: Attack Surface Map</h2>
-                <p>Visualize how your compromised accounts connect and create attack paths</p>
-            </div>
-            
-            <div class="surface-controls">
-                <button onclick="loadSampleProfile()" class="load-sample-btn">
-                    <i class="fas fa-user-shield"></i>
-                    Load Sample Profile
-                </button>
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="node-sample clean"></div>
-                        <span>Secure</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="node-sample breached"></div>
-                        <span>Breached</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="attack-path-sample"></div>
-                        <span>Attack Path</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="attack-surface-map" class="attack-map-container">
-                <div class="map-placeholder">
-                    <i class="fas fa-project-diagram"></i>
-                    <p>Load a profile to see attack surface mapping</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature 3: What If Threat Simulation -->
-        <section id="simulation" class="feature-panel">
-            <div class="panel-header">
-                <h2><i class="fas fa-play-circle"></i> "What If?" Threat Simulation</h2>
-                <p>Experience a realistic attack scenario to understand your vulnerabilities</p>
-            </div>
-            
-            <div class="simulation-controls">
-                <div class="scenario-selector">
-                    <label for="attack-scenario">Choose Attack Scenario:</label>
-                    <select id="attack-scenario">
-                        <option value="credential-stuffing">Credential Stuffing Attack</option>
-                        <option value="spear-phishing">Spear Phishing Campaign</option>
-                        <option value="social-engineering">Social Engineering Attack</option>
-                        <option value="lateral-movement">Corporate Lateral Movement</option>
-                    </select>
-                </div>
-                
-                <button onclick="startSimulation()" class="simulate-btn">
-                    <i class="fas fa-play"></i>
-                    Start Simulation
-                </button>
-            </div>
-            
-            <div id="simulation-theater" class="simulation-container">
-                <div class="simulation-placeholder">
-                    <i class="fas fa-theater-masks"></i>
-                    <p>Select a scenario and click "Start Simulation" to begin</p>
-                </div>
-            </div>
-            
-            <div class="simulation-timeline" id="simulation-timeline" style="display: none;">
-                <div class="timeline-step" data-step="1">
-                    <div class="step-marker">1</div>
-                    <div class="step-content">
-                        <h4>Initial Compromise</h4>
-                        <p>Attacker obtains your credentials</p>
-                    </div>
-                </div>
-                <div class="timeline-step" data-step="2">
-                    <div class="step-marker">2</div>
-                    <div class="step-content">
-                        <h4>Credential Testing</h4>
-                        <p>Testing across multiple platforms</p>
-                    </div>
-                </div>
-                <div class="timeline-step" data-step="3">
-                    <div class="step-marker">3</div>
-                    <div class="step-content">
-                        <h4>Account Takeover</h4>
-                        <p>Gaining control of additional accounts</p>
-                    </div>
-                </div>
-                <div class="timeline-step" data-step="4">
-                    <div class="step-marker">4</div>
-                    <div class="step-content">
-                        <h4>Impact Escalation</h4>
-                        <p>Leveraging access for maximum damage</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Scripts -->
-    <script src="../assets/js/threat-analyzer.js"></script>
-    <script src="../assets/js/attack-surface-map.js"></script>
-    <script src="../assets/js/threat-simulation.js"></script>
-    <script src="../assets/js/app-advanced.js"></script>
+    <div class="redirect-message">
+        <h2>🚀 ThreatScope AI has been updated!</h2>
+        <p>Redirecting to the new modular interface...</p>
+        <p>If you're not redirected, <a href="index.html">click here</a></p>
+    </div>
+    
+    <script>
+        // Fallback redirect after 3 seconds
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 3000);
+    </script>
 </body>
 </html>

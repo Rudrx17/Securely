@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Simulation - ThreatScope AI</title>
+    <meta name="description" content="Interactive threat simulation and security scenario training">
+    <link rel="stylesheet" href="../assets/css/threat-analysis.css?v=20250829210000">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()" style="display: none;">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="top-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="logo-text">ThreatScope AI</span>
+                </h1>
+            </div>
+            <div class="top-bar-right">
+                <button class="account-icon">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Feature Navigation -->
+        <nav class="feature-nav">
+            <a href="threat-engine.html" class="feature-btn">
+                <i class="fas fa-robot"></i>
+                <span>AI Threat Engine</span>
+            </a>
+            <a href="attack-surface.html" class="feature-btn">
+                <i class="fas fa-project-diagram"></i>
+                <span>Attack Surface Map</span>
+            </a>
+            <a href="simulation.html" class="feature-btn active">
+                <i class="fas fa-play-circle"></i>
+                <span>What If? Simulation</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Application -->
+    <main class="app-container">
+        <!-- What If Threat Simulation -->
+        <section id="simulation" class="feature-panel active">
+            <div class="panel-header">
+                <h2><i class="fas fa-play-circle"></i> "What If?" Threat Simulation</h2>
+                <p>Experience a realistic attack scenario to understand your vulnerabilities</p>
+            </div>
+            
+            <div class="simulation-controls">
+                <div class="scenario-selector">
+                    <label for="attack-scenario">Choose Attack Scenario:</label>
+                    <select id="attack-scenario">
+                        <option value="credential-stuffing">Credential Stuffing Attack</option>
+                        <option value="spear-phishing">Spear Phishing Campaign</option>
+                        <option value="social-engineering">Social Engineering Attack</option>
+                        <option value="lateral-movement">Corporate Lateral Movement</option>
+                    </select>
+                </div>
+                
+                <button onclick="startSimulation()" class="simulate-btn">
+                    <i class="fas fa-play"></i>
+                    Start Simulation
+                </button>
+            </div>
+            
+            <div id="simulation-theater" class="simulation-container">
+                <div class="simulation-placeholder">
+                    <i class="fas fa-theater-masks"></i>
+                    <p>Select a scenario and click "Start Simulation" to begin</p>
+                </div>
+            </div>
+            
+            <div class="simulation-timeline" id="simulation-timeline" style="display: none;">
+                <div class="timeline-step" data-step="1">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h4>Initial Compromise</h4>
+                        <p>Attacker obtains your credentials</p>
+                    </div>
+                </div>
+                <div class="timeline-step" data-step="2">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h4>Credential Testing</h4>
+                        <p>Testing across multiple platforms</p>
+                    </div>
+                </div>
+                <div class="timeline-step" data-step="3">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h4>Account Takeover</h4>
+                        <p>Gaining control of additional accounts</p>
+                    </div>
+                </div>
+                <div class="timeline-step" data-step="4">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <h4>Impact Escalation</h4>
+                        <p>Leveraging access for maximum damage</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/threat-simulation.js"></script>
+    <script>
+        // Initialize threat simulation for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the threat simulation
+            if (typeof ThreatSimulation !== 'undefined') {
+                window.threatSimulation = new ThreatSimulation();
+                console.log('Threat Simulation initialized');
+            } else {
+                console.error('ThreatSimulation class not found');
+            }
+        });
+        
+        // Start simulation function
+        function startSimulation() {
+            if (window.threatSimulation && typeof window.threatSimulation.startSimulation === 'function') {
+                // Use the class method
+                window.threatSimulation.startSimulation();
+            } else {
+                // Fallback implementation
+                const scenario = document.getElementById('attack-scenario').value;
+                const theater = document.getElementById('simulation-theater');
+                const timeline = document.getElementById('simulation-timeline');
+                
+                console.log('Starting simulation (fallback):', scenario);
+                
+                // Show loading state
+                theater.innerHTML = `
+                    <div class="simulation-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <h3>Initializing ${scenario.replace('-', ' ')} simulation...</h3>
+                        <p>Preparing realistic attack scenario</p>
+                    </div>
+                `;
+                
+                // Show timeline after a delay
+                setTimeout(() => {
+                    timeline.style.display = 'block';
+                    
+                    // Show active simulation
+                    theater.innerHTML = `
+                        <div class="simulation-active">
+                            <h3>${scenario.replace('-', ' ').toUpperCase()} SIMULATION</h3>
+                            <div class="simulation-status">
+                                <div class="status-indicator active"></div>
+                                <span>Simulation Running...</span>
+                            </div>
+                            <p>This interactive simulation demonstrates how a ${scenario.replace('-', ' ')} attack unfolds in real-time.</p>
+                            <div style="margin-top: 2rem;">
+                                <button onclick="stopSimulation()" class="stop-simulation-btn" style="padding: 0.8rem 1.5rem; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;">
+                                    <i class="fas fa-stop"></i>
+                                    Stop Simulation
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Animate timeline steps
+                    const steps = document.querySelectorAll('.timeline-step');
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('active');
+                            if (index > 0) {
+                                steps[index - 1].classList.remove('active');
+                                steps[index - 1].classList.add('completed');
+                            }
+                        }, index * 2000);
+                    });
+                }, 1500);
+            }
+        }
+        
+        // Stop simulation function
+        function stopSimulation() {
+            if (window.threatSimulation && typeof window.threatSimulation.isRunning !== 'undefined') {
+                window.threatSimulation.isRunning = false;
+            }
+            
+            const theater = document.getElementById('simulation-theater');
+            const timeline = document.getElementById('simulation-timeline');
+            
+            theater.innerHTML = `
+                <div class="simulation-placeholder">
+                    <i class="fas fa-theater-masks"></i>
+                    <p>Select a scenario and click "Start Simulation" to begin</p>
+                </div>
+            `;
+            
+            timeline.style.display = 'none';
+            
+            // Reset timeline steps
+            document.querySelectorAll('.timeline-step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+        }
+        
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
