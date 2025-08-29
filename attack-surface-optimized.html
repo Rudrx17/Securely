@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attack Surface Analyzer - Securely</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/attack-surface-optimized.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Securely</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="breach-checker.html" class="nav-link">Breach Checker</a>
+                </li>
+                <li class="nav-item">
+                    <a href="attack-surface.html" class="nav-link">Attack Surface</a>
+                </li>
+                <li class="nav-item">
+                    <a href="attack-surface-optimized.html" class="nav-link active">Optimized Surface</a>
+                </li>
+                <li class="nav-item">
+                    <a href="scanner.html" class="nav-link">Security Scanner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">Blog</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        <i class="fas fa-project-diagram"></i>
+                        Optimized Attack Surface Analyzer
+                    </h1>
+                    <p class="hero-description">
+                        Advanced visualization of your digital attack surface with enhanced performance and user experience
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Lightning Fast</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile Responsive</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-eye"></i>
+                            <span>Intuitive Interface</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-download"></i>
+                            <span>Export Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-section">
+                <div class="section-header">
+                    <h2>Visualize Your Attack Surface</h2>
+                    <p>
+                        See how your breached accounts create interconnected attack paths that hackers could exploit.
+                        This optimized version provides better performance, cleaner visuals, and enhanced user experience.
+                    </p>
+                </div>
+
+                <div class="tool-container">
+                    <div id="attack-surface-map">
+                        <!-- Attack surface visualization will load here -->
+                    </div>
+                </div>
+
+                <div class="optimization-info">
+                    <h3><i class="fas fa-rocket"></i> What's New in the Optimized Version</h3>
+                    <div class="improvements">
+                        <div class="improvement-card">
+                            <div class="improvement-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="improvement-content">
+                                <h4>Enhanced Performance</h4>
+                                <p>Reduced simulation compute overhead with optimized force algorithms and efficient DOM operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="improvement-card">
+                            <div class="improvement-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="improvement-content">
+                                <h4>Better Visual Design</h4>
+                                <p>Cleaner layout with hybrid radial clustering and improved color schemes for better readability.</p>
+                            </div>
+                        </div>
+
+                        <div class="improvement-card">
+                            <div class="improvement-icon">
+                                <i class="fas fa-mouse-pointer"></i>
+                            </div>
+                            <div class="improvement-content">
+                                <h4>Improved Interactions</h4>
+                                <p>Smoother tooltips, better hover effects, and optimized event handling for responsive feel.</p>
+                            </div>
+                        </div>
+
+                        <div class="improvement-card">
+                            <div class="improvement-icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                            <div class="improvement-content">
+                                <h4>Smart Attack Paths</h4>
+                                <p>Filtered attack paths showing only high-confidence connections with visual risk indicators.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-legend">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Risk Level Guide</h3>
+                    <div class="legend-items">
+                        <div class="legend-item critical">
+                            <div class="legend-color"></div>
+                            <div class="legend-info">
+                                <strong>Critical Risk</strong>
+                                <span>Financial, Healthcare - Immediate action required</span>
+                            </div>
+                        </div>
+                        <div class="legend-item high">
+                            <div class="legend-color"></div>
+                            <div class="legend-info">
+                                <strong>High Risk</strong>
+                                <span>Professional, Development - High priority</span>
+                            </div>
+                        </div>
+                        <div class="legend-item medium">
+                            <div class="legend-color"></div>
+                            <div class="legend-info">
+                                <strong>Medium Risk</strong>
+                                <span>Social, Communication - Monitor closely</span>
+                            </div>
+                        </div>
+                        <div class="legend-item low">
+                            <div class="legend-color"></div>
+                            <div class="legend-info">
+                                <strong>Low Risk</strong>
+                                <span>Gaming, Entertainment - Assess periodically</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Securely</h4>
+                    <p>Protecting your digital identity with advanced security tools and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="breach-checker.html">Breach Checker</a></li>
+                        <li><a href="attack-surface.html">Attack Surface</a></li>
+                        <li><a href="scanner.html">Security Scanner</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="blog.html">Security Blog</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Securely. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/attack-surface-canvas.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    </script>
+
+    <style>
+        /* Additional styles for the optimization info section */
+        .optimization-info {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+        }
+
+        .optimization-info h3 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .improvements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .improvement-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .improvement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .improvement-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .improvement-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .improvement-content p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .risk-legend {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .risk-legend h3 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-item.critical .legend-color { background: #dc3545; }
+        .legend-item.high .legend-color { background: #fd7e14; }
+        .legend-item.medium .legend-color { background: #ffc107; }
+        .legend-item.low .legend-color { background: #28a745; }
+
+        .legend-info strong {
+            display: block;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .legend-info span {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .feature i {
+            color: #00b894;
+        }
+    </style>
+</body>
+</html>

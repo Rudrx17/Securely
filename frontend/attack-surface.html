@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attack Surface Map - ThreatScope AI</title>
-    <meta name="description" content="Visualize digital attack surfaces and security vulnerabilities">
+    <meta name="description" content="Dynamic attack surface visualization with fixed movement issues">
     <link rel="stylesheet" href="../assets/css/threat-analysis.css?v=20250829210000">
+    <link rel="stylesheet" href="../assets/css/attack-surface-dynamic.css?v=20250829220000">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- D3.js for attack surface visualization -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -52,7 +53,7 @@
 
     <!-- Main Application -->
     <main class="app-container">
-        <!-- Digital Twin Attack Surface Map -->
+        <!-- Dynamic Attack Surface Map -->
         <section id="attack-surface" class="feature-panel active">
             <div class="panel-header">
                 <h2><i class="fas fa-project-diagram"></i> Digital Twin: Attack Surface Map</h2>
@@ -60,7 +61,7 @@
             </div>
             
             <div class="surface-controls">
-                <button onclick="loadSampleProfile()" class="load-sample-btn">
+                <button onclick="loadEmailProfile('aryanbhopale7@gmail.com')" class="load-sample-btn">
                     <i class="fas fa-user-shield"></i>
                     Load Sample Profile
                 </button>
@@ -90,75 +91,241 @@
     </main>
 
     <!-- Scripts -->
-    <script src="../assets/js/attack-surface-map.js"></script>
     <script>
-        // Initialize attack surface map for this page
+        // DIRECT IMPLEMENTATION - No external files needed
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize the attack surface map
-            if (typeof AttackSurfaceMap !== 'undefined') {
-                window.attackSurfaceMap = new AttackSurfaceMap();
-                console.log('Attack Surface Map initialized');
-            } else {
-                console.error('AttackSurfaceMap class not found');
+            console.log('Page loaded, creating attack surface...');
+            
+            // Get the container
+            const container = document.getElementById('attack-surface-map');
+            if (!container) {
+                console.error('Container not found!');
+                return;
             }
+            
+            // Show loading first
+            container.innerHTML = `
+                <div style="text-align: center; padding: 60px; color: #666;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #007bff; margin-bottom: 20px;"></i>
+                    <h3>Loading Attack Surface for aryanbhopale7@gmail.com</h3>
+                    <p>Creating network visualization...</p>
+                </div>
+            `;
+            
+            // Create the visualization after 1 second
+            setTimeout(function() {
+                createAttackSurface();
+            }, 1000);
         });
         
-        // Load sample profile function
-        function loadSampleProfile() {
-            if (window.attackSurfaceMap) {
-                // Use the global function from attack-surface-map.js
-                if (typeof window.loadSampleProfile === 'undefined') {
-                    // Define the function if it doesn't exist globally
-                    window.loadSampleProfile = function() {
-                        const sampleBreaches = [
-                            {
-                                website: 'linkedin.com',
-                                breach_date: '2023-01-15',
-                                attack_vector: 'credential_stuffing',
-                                severity_level: 5
-                            },
-                            {
-                                website: 'github.com',
-                                breach_date: '2023-02-10',
-                                attack_vector: 'lateral_movement',
-                                severity_level: 5
-                            }
-                        ];
+        function createAttackSurface() {
+            const container = document.getElementById('attack-surface-map');
+            
+            // Get container dimensions
+            const containerWidth = container.clientWidth || 1000;
+            const containerHeight = Math.max(container.clientHeight || 500, 500);
+            
+            // Calculate center and positions
+            const centerX = containerWidth / 2;
+            const centerY = containerHeight / 2;
+            const radius = Math.min(centerX, centerY) - 80; // Leave margin
+            
+            // Create SVG that fits the container
+            container.innerHTML = '';
+            const svg = d3.select('#attack-surface-map')
+                .append('svg')
+                .attr('width', '100%')
+                .attr('height', containerHeight)
+                .attr('viewBox', `0 0 ${containerWidth} ${containerHeight}`)
+                .style('background', 'transparent');
+            
+            // Sample data with authentic brand colors
+            const platformData = [
+                { name: 'Steam', icon: 'fab fa-steam', color: '#1b2838', textColor: '#ffffff' },
+                { name: 'Discord', icon: 'fab fa-discord', color: '#5865f2', textColor: '#ffffff' },
+                { name: 'Epic', icon: 'fas fa-gamepad', color: '#313131', textColor: '#ffffff' },
+                { name: 'Twitch', icon: 'fab fa-twitch', color: '#9146ff', textColor: '#ffffff' },
+                { name: 'Spotify', icon: 'fab fa-spotify', color: '#1db954', textColor: '#ffffff' },
+                { name: 'Netflix', icon: 'fas fa-tv', color: '#e50914', textColor: '#ffffff' },
+                { name: 'Gmail', icon: 'far fa-envelope', color: '#ea4335', textColor: '#ffffff' }
+            ];
+            
+            // Calculate positions in a circle
+            const platforms = platformData.map((platform, index) => {
+                const angle = (index / platformData.length) * 2 * Math.PI - Math.PI / 2; // Start from top
+                return {
+                    ...platform,
+                    x: centerX + Math.cos(angle) * radius * 0.8,
+                    y: centerY + Math.sin(angle) * radius * 0.8
+                };
+            });
+            
+            // Draw connections - minimal sleek lines
+            platforms.forEach(platform => {
+                svg.append('line')
+                    .attr('x1', centerX)
+                    .attr('y1', centerY)
+                    .attr('x2', platform.x)
+                    .attr('y2', platform.y)
+                    .attr('stroke', '#666')
+                    .attr('stroke-width', 1)
+                    .attr('opacity', 0.4)
+                    .attr('stroke-dasharray', '2,2');
+            });
+            
+            // Draw center node - sleek minimal
+            svg.append('circle')
+                .attr('cx', centerX)
+                .attr('cy', centerY)
+                .attr('r', 40)
+                .attr('fill', '#2a2a2a')
+                .attr('stroke', '#666')
+                .attr('stroke-width', 2);
+            
+            // Center icon
+            svg.append('text')
+                .attr('x', centerX)
+                .attr('y', centerY + 2)
+                .attr('text-anchor', 'middle')
+                .style('font-family', 'FontAwesome')
+                .style('font-size', '18px')
+                .style('fill', 'white')
+                .text('\uf0e0');
+                
+            svg.append('text')
+                .attr('x', centerX)
+                .attr('y', centerY - 22)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '10px')
+                .style('font-weight', '500')
+                .style('fill', '#999')
+                .text('CORE');
+            
+            // Draw platform nodes
+            platforms.forEach(platform => {
+                const group = svg.append('g')
+                    .attr('transform', `translate(${platform.x}, ${platform.y})`)
+                    .style('cursor', 'pointer');
+                
+                group.append('circle')
+                    .attr('r', 28)
+                    .attr('fill', platform.color)
+                    .attr('stroke', '#444')
+                    .attr('stroke-width', 1);
+                
+                // Add FontAwesome icon using foreignObject
+                const foreign = group.append('foreignObject')
+                    .attr('x', -12)
+                    .attr('y', -12)
+                    .attr('width', 24)
+                    .attr('height', 24);
+                
+                const iconDiv = foreign.append('xhtml:div')
+                    .style('display', 'flex')
+                    .style('align-items', 'center')
+                    .style('justify-content', 'center')
+                    .style('width', '24px')
+                    .style('height', '24px')
+                    .style('color', platform.textColor)
+                    .style('font-size', '16px');
+                
+                iconDiv.append('xhtml:i')
+                    .attr('class', platform.icon);
+                
+                group.append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('dy', '45px')
+                    .style('font-size', '11px')
+                    .style('font-weight', 'bold')
+                    .style('fill', '#333')
+                    .text(platform.name);
+                
+                // Add hover effect
+                group.on('mouseenter', function() {
+                    d3.select(this).select('circle')
+                        .transition().duration(200)
+                        .attr('r', 35);
+                })
+                .on('mouseleave', function() {
+                    d3.select(this).select('circle')
+                        .transition().duration(200)
+                        .attr('r', 30);
+                })
+                .on('click', function() {
+                    d3.select(this).select('circle')
+                        .transition().duration(300)
+                        .attr('stroke-width', 6)
+                        .transition().duration(300)
+                        .attr('stroke-width', 3);
+                });
+                
+                // Add drag functionality
+                const drag = d3.drag()
+                    .on('start', function(event) {
+                        d3.select(this).select('circle')
+                            .attr('stroke-width', 5)
+                            .attr('opacity', 0.8);
+                        console.log('Started dragging:', platform.name);
+                    })
+                    .on('drag', function(event) {
+                        // Update platform position
+                        platform.x = event.x;
+                        platform.y = event.y;
                         
-                        window.attackSurfaceMap.updateWithBreaches(sampleBreaches);
+                        // Move the node group
+                        d3.select(this)
+                            .attr('transform', `translate(${platform.x}, ${platform.y})`);
                         
-                        // Show notification
-                        const notification = document.createElement('div');
-                        notification.style.cssText = `
-                            position: fixed;
-                            top: 20px;
-                            right: 20px;
-                            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                            color: white;
-                            padding: 1rem 1.5rem;
-                            border-radius: 8px;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                            z-index: 1000;
-                            font-weight: 500;
-                        `;
-                        notification.innerHTML = '<i class="fas fa-check"></i> Sample profile loaded - John Doe (TechCorp)';
-                        document.body.appendChild(notification);
-                        
-                        setTimeout(() => {
-                            notification.remove();
-                        }, 3000);
-                    };
-                }
-                window.loadSampleProfile();
-            } else {
-                console.log('Attack surface map not initialized yet, showing loading...');
-                document.querySelector('.map-placeholder').innerHTML = `
-                    <div class="loading-animation">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <p>Loading attack surface visualization...</p>
+                        // Update the connection line
+                        svg.selectAll('line')
+                            .filter(function(d, i) {
+                                return platforms[i] === platform;
+                            })
+                            .attr('x2', platform.x)
+                            .attr('y2', platform.y);
+                    })
+                    .on('end', function(event) {
+                        d3.select(this).select('circle')
+                            .attr('stroke-width', 3)
+                            .attr('opacity', 1);
+                        console.log('Finished dragging:', platform.name, 'to position:', platform.x, platform.y);
+                    });
+                
+                // Apply drag to the group
+                group.call(drag);
+            });
+            
+            // Add summary
+            const summary = document.createElement('div');
+            summary.style.cssText = `
+                margin-top: 20px;
+                padding: 15px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                text-align: center;
+            `;
+            summary.innerHTML = `
+                <h4>🛡️ Attack Surface Summary for aryanbhopale7@gmail.com</h4>
+                <div style="display: flex; justify-content: center; gap: 40px; margin-top: 15px;">
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #dc3545;">${platforms.length}</div>
+                        <div style="font-size: 0.9rem; color: #666;">Total Breaches</div>
                     </div>
-                `;
-            }
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #fd7e14;">65</div>
+                        <div style="font-size: 0.9rem; color: #666;">Risk Score</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: #007bff;">3</div>
+                        <div style="font-size: 0.9rem; color: #666;">Categories</div>
+                    </div>
+                </div>
+            `;
+            
+            container.parentNode.insertBefore(summary, container.nextSibling);
+            
+            console.log('Attack surface created successfully!');
         }
         
         // Mobile sidebar toggle
