@@ -18,26 +18,26 @@ An AI-powered threat analysis platform that integrates real breach data to provi
 ## Project Structure
 
 ```
-breach-checker/
+Securely/
 ├── frontend/
-│   └── threat-analysis.html    # Main ThreatScope AI interface
+│   ├── index.html              # Main ThreatScope AI interface
+│   ├── threat-engine.html      # AI threat analysis
+│   ├── attack-surface.html     # Attack surface visualization
+│   └── simulation.html         # Interactive simulations
 ├── backend/
-│   ├── config.php              # Database configuration
-│   ├── check_real_breaches.php # Real breach data API endpoint
-│   ├── real_data_analyzer.php  # Real data analysis class
-│   └── ai/
-│       └── threat_analyzer.php # AI threat analysis engine
+│   ├── breach_checker.php      # Real breach data API endpoint
+│   ├── breach_data_sample.db   # Sample breach database
+│   └── gemini_api.php          # AI integration
 ├── assets/
 │   ├── css/
-│   │   ├── style.css           # Basic styles
-│   │   └── threat-analysis.css # Advanced UI styles
+│   │   └── threat-analysis.css # Main application styles
 │   └── js/
 │       ├── app-advanced.js     # Main application controller
 │       ├── threat-analyzer.js  # AI threat analysis
-│       ├── attack-surface-map.js # Attack surface visualization
+│       ├── attack-surface-map-integrated.js # Attack surface visualization
 │       └── threat-simulation.js  # Interactive simulations
 ├── .htaccess                   # Apache configuration
-├── LAUNCH.cmd                  # Windows launcher
+├── .gitignore                  # Git ignore file
 └── README.md                   # This file
 ```
 
